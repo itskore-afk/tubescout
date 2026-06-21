@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeScout - Export YouTube Channel URLs Instantly</title>
+    <meta name="description" content="Export videos, shorts, live streams and podcast URLs from any YouTube channel in seconds. Perfect for competitor analysis, AI research, NotebookLM and content audits.">
+    <meta name="keywords" content="youtube channel url extractor, youtube competitor analysis, youtube video exporter, youtube research tool, youtube content audit, notebooklm dataset builder">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="TRACKING_ID_PLACEHOLDER"></script>
+
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --primary-text: #111111;
+            --secondary-text: #666666;
+            --cta-color: #FF0033;
+            --border-color: #EEEEEE;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        html { scroll-behavior: smooth; background: var(--bg-color); color: var(--primary-text); }
+        body { overflow-x: hidden; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 24px; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; cursor: pointer; letter-spacing: -0.5px; }
+        .logo-dot { width: 8px; height: 8px; background: var(--cta-color); border-radius: 50%; display: inline-block; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--secondary-text); font-size: 14px; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-text); }
+        .nav-btn { background: var(--primary-text); color: white !important; padding: 10px 20px; border-radius: 10px; font-weight: 600 !important; }
+        .nav-btn:hover { background: var(--cta-color); }
+
+        .section-container { max-width: 1100px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+        
+        .badge { background: #FFF5F6; border: 1px solid #FFE0E5; color: var(--cta-color); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+        h1 { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 16px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .subheadline { font-size: 18px; color: var(--secondary-text); max-width: 640px; margin: 0 auto 40px auto; line-height: 1.5; }
+        .hero-ctas { display: flex; justify-content: center; gap: 16px; margin-bottom: 60px; }
+        .btn { padding: 16px 32px; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; border: none; }
+        .btn-primary { background: var(--cta-color); color: white; box-shadow: 0 4px 14px rgba(255, 0, 51, 0.2); }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-secondary { background: transparent; color: var(--primary-text); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: #FAFAFA; border-color: var(--primary-text); }
+        
+        .btn-refresh { background: #F3F4F6; color: var(--primary-text); border: 1px solid var(--border-color); padding: 16px; display: flex; align-items: center; justify-content: center; border-radius: 12px; transition: var(--transition); }
+        .btn-refresh:hover { background: #E5E7EB; transform: translateY(-1px); }
+
+        .hero-mockup-card { background: white; border: 1px solid var(--border-color); border-radius: var(--radius); max-width: 680px; margin: 0 auto; padding: 32px; box-shadow: var(--shadow); text-align: left; transition: var(--transition); }
+        .hero-mockup-card:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+        
+        .input-wrapper { display: flex; gap: 12px; margin-bottom: 20px; align-items: center; }
+        .url-input { flex: 1; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; outline: none; background: #FAFAFA; transition: var(--transition); }
+        .url-input:focus { background: #FFF; border-color: var(--cta-color); }
+        
+        .results-render-box { background: #FAFAFA; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; min-height: 60px; }
+        .placeholder-stats { display: flex; flex-direction: column; gap: 8px; color: var(--secondary-text); font-size: 14px; }
+        .stat-badge { font-weight: 600; color: #2E7D32; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+
+        .section-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: left; }
+        .feature-card { border: 1px solid var(--border-color); padding: 28px; border-radius: var(--radius); background: white; transition: var(--transition); }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { color: var(--secondary-text); font-size: 14px; line-height: 1.5; }
+
+        .faq-item { border-bottom: 1px solid var(--border-color); text-align: left; padding: 24px 8px; max-width: 720px; margin: 0 auto; }
+        .faq-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .faq-item p { color: var(--secondary-text); font-size: 14px; line-height: 1.5; }
+
+        .waitlist-form { display: flex; max-width: 480px; margin: 0 auto; gap: 12px; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 48px 24px; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--secondary-text); font-size: 14px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { text-decoration: none; color: var(--secondary-text); }
+        .footer-links a:hover { color: var(--primary-text); }
+
+        @media(max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } h1 { font-size: 38px; } .input-wrapper, .waitlist-form { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="window.scrollTo(0,0)"><span class="logo-dot"></span>TubeScout</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#usecases">Use Cases</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#waitlist" class="nav-btn">Join Waitlist</a></li>
+        </ul>
+    </nav>
+
+    <section class="section-container" id="tool">
+        <div class="badge">⚡ Built for Content Researchers</div>
+        <h1>Export Any YouTube Channel in Seconds</h1>
+        <p class="subheadline">Get Videos, Shorts, Live Streams and Podcast URLs instantly. Perfect for AI research, competitor analysis, NotebookLM and content audits.</p>
+        
+        <div class="hero-ctas">
+            <a href="#tool" class="btn btn-primary">Try Free</a>
+            <a href="#waitlist" class="btn btn-secondary">Join Waitlist</a>
+        </div>
+
+        <div class="hero-mockup-card">
+            <div class="input-wrapper">
+                <input type="text" id="channelUrl" class="url-input" placeholder="youtube.com/@creator">
+                <button class="btn btn-primary" onclick="startExtraction()">Extract URLs</button>
+                <button class="btn-refresh" id="refreshBtn" title="Reset Field" onclick="resetExtractor()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                </button>
+            </div>
+            <div class="results-render-box" id="outputBox">
+                <div class="placeholder-stats">
+                    <div>youtube.com/@creator</div>
+                    <div>◽ 0 Videos Found</div>
+                    <div>◽ 0 Shorts Found</div>
+                    <div>◽ 0 Live Streams Found</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="features" style="background: #FAFAFA; border-top:1px solid #EEE; border-bottom:1px solid #EEE; max-width: 100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+            <h2 class="section-title">Stop Wasting Hours Scrolling Through YouTube</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <h3>Manual Scrolling</h3>
+                    <p>Finding old uploads takes forever.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Competitor Research</h3>
+                    <p>Analyze any creator's content strategy faster.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AI Dataset Building</h3>
+                    <p>Create clean datasets for ChatGPT and NotebookLM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">Everything You Need</h2>
+        <div class="grid-3">
+            <div class="feature-card"><h3>Instant URL Extraction</h3><p>Extract strings effortlessly.</p></div>
+            <div class="feature-card"><h3>Videos, Shorts and Lives</h3><p>Full spectrum targeting parameters.</p></div>
+            <div class="feature-card"><h3>One Click Copy</h3><p>Fast integrated clipboard functions.</p></div>
+            <div class="feature-card"><h3>Fast Channel Scanning</h3><p>Optimized parsing loops execution framework.</p></div>
+            <div class="feature-card"><h3>No Sign Up Required</h3><p>No authorization checks required to run tool sequences.</p></div>
+            <div class="feature-card"><h3>Clean Research Workflow</h3><p>Zero distractions interface design flow layout.</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" style="background:#FAFAFA; max-width:100%;">
+        <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+            <h2 class="section-title">How It Works</h2>
+            <div class="grid-3">
+                <div class="feature-card"><h3>Step 1</h3><p>Paste Channel URL</p></div>
+                <div class="feature-card"><h3>Step 2</h3><p>Click Extract</p></div>
+                <div class="feature-card"><h3>Step 3</h3><p>Copy Results</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="usecases">
+        <h2 class="section-title">Built For</h2>
+        <div class="grid-3">
+            <div class="feature-card"><h3>SEO Researchers</h3><p>Extract targeting meta structures seamlessly.</p></div>
+            <div class="feature-card"><h3>Content Strategists</h3><p>Review content timelines continuously.</p></div>
+            <div class="feature-card"><h3>YouTube Coaches</h3><p>Analyze layout configurations effortlessly.</p></div>
+            <div class="feature-card"><h3>Marketing Agencies</h3><p>Run competitive matrix metrics checks instantly.</p></div>
+            <div class="feature-card"><h3>AI Researchers</h3><p>Build high-density training files safely.</p></div>
+            <div class="feature-card"><h3>Students</h3><p>Collect source references systematically.</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" id="waitlist" style="background: #FFF5F6; border-radius: 24px; margin-bottom: 80px; max-width: 1040px;">
+        <h2 class="section-title" style="margin-bottom: 12px;">Get Early Access</h2>
+        <p class="subheadline" style="margin-bottom: 32px;">Join the waitlist to unlock advanced exports, historical channel analysis and premium research features.</p>
+        <div class="waitlist-form">
+            <input type="email" class="url-input" style="background: white;" placeholder="Enter your email">
+            <button class="btn btn-primary" onclick="alert('Thanks for joining the waitlist!')">Notify Me</button>
+        </div>
+    </section>
+
+    <section class="section-container" id="faq">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-item">
+            <h4>Is TubeScout free?</h4>
+            <p>Yes. The core extraction tool is completely free.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do I need an account?</h4>
+            <p>No. Just paste a channel and start.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can I use it for research?</h4>
+            <p>Yes. TubeScout is designed for content audits, competitor analysis and AI workflows.</p>
+        </div>
+    </section>
+
+    <section class="section-container" style="padding: 100px 24px;">
+        <h2 style="font-size: 42px; margin-bottom: 12px;">Research YouTube Faster</h2>
+        <p class="subheadline" style="margin-bottom: 24px;">Export channel URLs in seconds.</p>
+        <a href="#tool" class="btn btn-primary">Try TubeScout Free</a>
+    </section>
+
+    <footer>
+        <div>
+            <strong>TubeScout</strong>
+            <p style="font-size: 12px; margin-top: 4px;">Export YouTube channel URLs instantly.</p>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="javascript:void(0)">Privacy</a></li>
+            <li><a href="javascript:void(0)">Contact</a></li>
+        </ul>
+        <div>© 2026 TubeScout</div>
+    </footer>
+
+    <script>
+        async function startExtraction() {
+            const input = document.getElementById('channelUrl').value.trim();
+            const outputBox = document.getElementById('outputBox');
+            
+            if(!input) {
+                alert('Please input a valid channel link.');
+                return;
+            }
+            
+            outputBox.innerHTML = `<div style="color:var(--secondary-text); font-size:14px;">📡 Contacting background server execution threads...</div>`;
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5001/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: input })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const allLinksText = data.links.join('\n');
+                    outputBox.innerHTML = `
+                        <div class="placeholder-stats" style="margin-bottom: 16px;">
+                            <div style="font-weight:600; color:#111;">${input}</div>
+                            <div class="stat-badge">✓ ${data.videos_count} Real Video Links Discovered!</div>
+                        </div>
+                        <textarea id="linksTextArea" style="width:100%; height:160px; border:1px solid var(--border-color); padding:12px; border-radius:8px; font-family:monospace; font-size:12px; white-space: pre; background:#F9FAFB; color:#111; resize: none; margin-bottom:12px;" readonly>${allLinksText}</textarea>
+                        <button class="btn btn-primary" style="width:100%; padding:12px; font-size:14px;" onclick="copyLinksToClipboard()">[Copy All URLs]</button>
+                    `;
+                } else {
+                    outputBox.innerHTML = `<div style="color:var(--cta-color); font-size:14px; font-weight:600;">❌ Extraction Error: ${data.error || data.message}</div>`;
+                }
+            } catch (error) {
+                outputBox.innerHTML = `<div style="color:var(--cta-color); font-size:14px; font-weight:600;">❌ Local pipeline disconnected. Ensure the terminal server application is listening.</div>`;
+            }
+        }
+
+        function copyLinksToClipboard() {
+            const SampleTextArea = document.getElementById('linksTextArea');
+            SampleTextArea.select();
+            document.execCommand('copy');
+            alert('All extracted links successfully copied to your clipboard!');
+        }
+
+        function resetExtractor() {
+            document.getElementById('channelUrl').value = '';
+            document.getElementById('outputBox').innerHTML = `
+                <div class="placeholder-stats">
+                    <div>youtube.com/@creator</div>
+                    <div>◽ 0 Videos Found</div>
+                    <div>◽ 0 Shorts Found</div>
+                    <div>◽ 0 Live Streams Found</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+EOFcat << 'EOF' > "/Users/tanzina/Downloads/Python Project/youtube_link_extractor/index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeScout - Export YouTube Channel URLs Instantly</title>
+    <meta name="description" content="Export videos, shorts, live streams and podcast URLs from any YouTube channel in seconds. Perfect for competitor analysis, AI research, NotebookLM and content audits.">
+    <meta name="keywords" content="youtube channel url extractor, youtube competitor analysis, youtube video exporter, youtube research tool, youtube content audit, notebooklm dataset builder">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="TRACKING_ID_PLACEHOLDER"></script>
+
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --primary-text: #111111;
+            --secondary-text: #666666;
+            --cta-color: #FF0033;
+            --border-color: #EEEEEE;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        html { scroll-behavior: smooth; background: var(--bg-color); color: var(--primary-text); }
+        body { overflow-x: hidden; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 24px; border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; cursor: pointer; letter-spacing: -0.5px; }
+        .logo-dot { width: 8px; height: 8px; background: var(--cta-color); border-radius: 50%; display: inline-block; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--secondary-text); font-size: 14px; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary-text); }
+        .nav-btn { background: var(--primary-text); color: white !important; padding: 10px 20px; border-radius: 10px; font-weight: 600 !important; }
+        .nav-btn:hover { background: var(--cta-color); }
+
+        .section-container { max-width: 1100px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+        
+        .badge { background: #FFF5F6; border: 1px solid #FFE0E5; color: var(--cta-color); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+        h1 { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 16px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .subheadline { font-size: 18px; color: var(--secondary-text); max-width: 640px; margin: 0 auto 40px auto; line-height: 1.5; }
+        .hero-ctas { display: flex; justify-content: center; gap: 16px; margin-bottom: 60px; }
+        .btn { padding: 16px 32px; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; border: none; }
+        .btn-primary { background: var(--cta-color); color: white; box-shadow: 0 4px 14px rgba(255, 0, 51, 0.2); }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-secondary { background: transparent; color: var(--primary-text); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: #FAFAFA; border-color: var(--primary-text); }
+        
+        .btn-refresh { background: #F3F4F6; color: var(--primary-text); border: 1px solid var(--border-color); padding: 16px; display: flex; align-items: center; justify-content: center; border-radius: 12px; transition: var(--transition); }
+        .btn-refresh:hover { background: #E5E7EB; transform: translateY(-1px); }
+
+        .hero-mockup-card { background: white; border: 1px solid var(--border-color); border-radius: var(--radius); max-width: 680px; margin: 0 auto; padding: 32px; box-shadow: var(--shadow); text-align: left; transition: var(--transition); }
+        .hero-mockup-card:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); }
+        
+        .input-wrapper { display: flex; gap: 12px; margin-bottom: 20px; align-items: center; }
+        .url-input { flex: 1; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; outline: none; background: #FAFAFA; transition: var(--transition); }
+        .url-input:focus { background: #FFF; border-color: var(--cta-color); }
+        
+        .results-render-box { background: #FAFAFA; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; min-height: 60px; }
+        .placeholder-stats { display: flex; flex-direction: column; gap: 8px; color: var(--secondary-text); font-size: 14px; }
+        .stat-badge { font-weight: 600; color: #2E7D32; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+
+        .section-title { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 48px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: left; }
+        .feature-card { border: 1px solid var(--border-color); padding: 28px; border-radius: var(--radius); background: white; transition: var(--transition); }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { color: var(--secondary-text); font-size: 14px; line-height: 1.5; }
+
+        .faq-item { border-bottom: 1px solid var(--border-color); text-align: left; padding: 24px 8px; max-width: 720px; margin: 0 auto; }
+        .faq-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .faq-item p { color: var(--secondary-text); font-size: 14px; line-height: 1.5; }
+
+        .waitlist-form { display: flex; max-width: 480px; margin: 0 auto; gap: 12px; }
+
+        footer { border-top: 1px solid var(--border-color); padding: 48px 24px; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--secondary-text); font-size: 14px; }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { text-decoration: none; color: var(--secondary-text); }
+        .footer-links a:hover { color: var(--primary-text); }
+
+        @media(max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } h1 { font-size: 38px; } .input-wrapper, .waitlist-form { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="window.scrollTo(0,0)"><span class="logo-dot"></span>TubeScout</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#usecases">Use Cases</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#waitlist" class="nav-btn">Join Waitlist</a></li>
+        </ul>
+    </nav>
+
+    <section class="section-container" id="tool">
+        <div class="badge">⚡ Built for Content Researchers</div>
+        <h1>Export Any YouTube Channel in Seconds</h1>
+        <p class="subheadline">Get Videos, Shorts, Live Streams and Podcast URLs instantly. Perfect for AI research, competitor analysis, NotebookLM and content audits.</p>
+        
+        <div class="hero-ctas">
+            <a href="#tool" class="btn btn-primary">Try Free</a>
+            <a href="#waitlist" class="btn btn-secondary">Join Waitlist</a>
+        </div>
+
+        <div class="hero-mockup-card">
+            <div class="input-wrapper">
+                <input type="text" id="channelUrl" class="url-input" placeholder="youtube.com/@creator">
+                <button class="btn btn-primary" onclick="startExtraction()">Extract URLs</button>
+                <button class="btn-refresh" id="refreshBtn" title="Reset Field" onclick="resetExtractor()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                </button>
+            </div>
+            <div class="results-render-box" id="outputBox">
+                <div class="placeholder-stats">
+                    <div>youtube.com/@creator</div>
+                    <div>◽ 0 Videos Found</div>
+                    <div>◽ 0 Shorts Found</div>
+                    <div>◽ 0 Live Streams Found</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="features" style="background: #FAFAFA; border-top:1px solid #EEE; border-bottom:1px solid #EEE; max-width: 100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+            <h2 class="section-title">Stop Wasting Hours Scrolling Through YouTube</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <h3>Manual Scrolling</h3>
+                    <p>Finding old uploads takes forever.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Competitor Research</h3>
+                    <p>Analyze any creator's content strategy faster.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AI Dataset Building</h3>
+                    <p>Create clean datasets for ChatGPT and NotebookLM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title">Everything You Need</h2>
+        <div class="grid-3">
+            <div class="feature-card"><h3>Instant URL Extraction</h3><p>Extract strings effortlessly.</p></div>
+            <div class="feature-card"><h3>Videos, Shorts and Lives</h3><p>Full spectrum targeting parameters.</p></div>
+            <div class="feature-card"><h3>One Click Copy</h3><p>Fast integrated clipboard functions.</p></div>
+            <div class="feature-card"><h3>Fast Channel Scanning</h3><p>Optimized parsing loops execution framework.</p></div>
+            <div class="feature-card"><h3>No Sign Up Required</h3><p>No authorization checks required to run tool sequences.</p></div>
+            <div class="feature-card"><h3>Clean Research Workflow</h3><p>Zero distractions interface design flow layout.</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" style="background:#FAFAFA; max-width:100%;">
+        <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+            <h2 class="section-title">How It Works</h2>
+            <div class="grid-3">
+                <div class="feature-card"><h3>Step 1</h3><p>Paste Channel URL</p></div>
+                <div class="feature-card"><h3>Step 2</h3><p>Click Extract</p></div>
+                <div class="feature-card"><h3>Step 3</h3><p>Copy Results</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="usecases">
+        <h2 class="section-title">Built For</h2>
+        <div class="grid-3">
+            <div class="feature-card"><h3>SEO Researchers</h3><p>Extract targeting meta structures seamlessly.</p></div>
+            <div class="feature-card"><h3>Content Strategists</h3><p>Review content timelines continuously.</p></div>
+            <div class="feature-card"><h3>YouTube Coaches</h3><p>Analyze layout configurations effortlessly.</p></div>
+            <div class="feature-card"><h3>Marketing Agencies</h3><p>Run competitive matrix metrics checks instantly.</p></div>
+            <div class="feature-card"><h3>AI Researchers</h3><p>Build high-density training files safely.</p></div>
+            <div class="feature-card"><h3>Students</h3><p>Collect source references systematically.</p></div>
+        </div>
+    </section>
+
+    <section class="section-container" id="waitlist" style="background: #FFF5F6; border-radius: 24px; margin-bottom: 80px; max-width: 1040px;">
+        <h2 class="section-title" style="margin-bottom: 12px;">Get Early Access</h2>
+        <p class="subheadline" style="margin-bottom: 32px;">Join the waitlist to unlock advanced exports, historical channel analysis and premium research features.</p>
+        <div class="waitlist-form">
+            <input type="email" class="url-input" style="background: white;" placeholder="Enter your email">
+            <button class="btn btn-primary" onclick="alert('Thanks for joining the waitlist!')">Notify Me</button>
+        </div>
+    </section>
+
+    <section class="section-container" id="faq">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-item">
+            <h4>Is TubeScout free?</h4>
+            <p>Yes. The core extraction tool is completely free.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do I need an account?</h4>
+            <p>No. Just paste a channel and start.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Can I use it for research?</h4>
+            <p>Yes. TubeScout is designed for content audits, competitor analysis and AI workflows.</p>
+        </div>
+    </section>
+
+    <section class="section-container" style="padding: 100px 24px;">
+        <h2 style="font-size: 42px; margin-bottom: 12px;">Research YouTube Faster</h2>
+        <p class="subheadline" style="margin-bottom: 24px;">Export channel URLs in seconds.</p>
+        <a href="#tool" class="btn btn-primary">Try TubeScout Free</a>
+    </section>
+
+    <footer>
+        <div>
+            <strong>TubeScout</strong>
+            <p style="font-size: 12px; margin-top: 4px;">Export YouTube channel URLs instantly.</p>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="javascript:void(0)">Privacy</a></li>
+            <li><a href="javascript:void(0)">Contact</a></li>
+        </ul>
+        <div>© 2026 TubeScout</div>
+    </footer>
+
+    <script>
+        async function startExtraction() {
+            const input = document.getElementById('channelUrl').value.trim();
+            const outputBox = document.getElementById('outputBox');
+            
+            if(!input) {
+                alert('Please input a valid channel link.');
+                return;
+            }
+            
+            outputBox.innerHTML = `<div style="color:var(--secondary-text); font-size:14px;">📡 Contacting background server execution threads...</div>`;
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5001/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: input })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const allLinksText = data.links.join('\n');
+                    outputBox.innerHTML = `
+                        <div class="placeholder-stats" style="margin-bottom: 16px;">
+                            <div style="font-weight:600; color:#111;">${input}</div>
+                            <div class="stat-badge">✓ ${data.videos_count} Real Video Links Discovered!</div>
+                        </div>
+                        <textarea id="linksTextArea" style="width:100%; height:160px; border:1px solid var(--border-color); padding:12px; border-radius:8px; font-family:monospace; font-size:12px; white-space: pre; background:#F9FAFB; color:#111; resize: none; margin-bottom:12px;" readonly>${allLinksText}</textarea>
+                        <button class="btn btn-primary" style="width:100%; padding:12px; font-size:14px;" onclick="copyLinksToClipboard()">[Copy All URLs]</button>
+                    `;
+                } else {
+                    outputBox.innerHTML = `<div style="color:var(--cta-color); font-size:14px; font-weight:600;">❌ Extraction Error: ${data.error || data.message}</div>`;
+                }
+            } catch (error) {
+                outputBox.innerHTML = `<div style="color:var(--cta-color); font-size:14px; font-weight:600;">❌ Local pipeline disconnected. Ensure the terminal server application is listening.</div>`;
+            }
+        }
+
+        function copyLinksToClipboard() {
+            const SampleTextArea = document.getElementById('linksTextArea');
+            SampleTextArea.select();
+            document.execCommand('copy');
+            alert('All extracted links successfully copied to your clipboard!');
+        }
+
+        function resetExtractor() {
+            document.getElementById('channelUrl').value = '';
+            document.getElementById('outputBox').innerHTML = `
+                <div class="placeholder-stats">
+                    <div>youtube.com/@creator</div>
+                    <div>◽ 0 Videos Found</div>
+                    <div>◽ 0 Shorts Found</div>
+                    <div>◽ 0 Live Streams Found</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
