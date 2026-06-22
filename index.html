@@ -2,26 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TubeScout - YouTube Channel URL Extractor</title>
+    <title>TubeScout - YouTube Channel URL Extractor & Research Tool</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #FFFFFF; color: #000000; font-family: sans-serif; }
-        .btn-red { background-color: #FF0033; color: white; }
+        .bg-primary { background-color: #FF0033; }
+        .text-primary { color: #FF0033; }
+        .border-primary { border-color: #FF0033; }
+        .btn-red { background-color: #FF0033; color: white; transition: 0.2s; }
+        .btn-red:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
-    <nav class="p-6 flex justify-between border-b border-gray-100">
-        <div class="font-bold text-xl">● TubeScout</div>
-        <div class="space-x-6 text-sm"><a href="#features">Features</a><a href="mailto:tubescoutsupport.voltage064@passinbox.com">Contact</a></div>
+    <nav class="max-w-6xl mx-auto py-8 px-6 flex justify-between items-center">
+        <div class="font-extrabold text-2xl tracking-tighter">● TubeScout</div>
+        <div class="space-x-8 text-sm font-medium">
+            <a href="#features">Features</a><a href="#faq">FAQ</a><a href="mailto:tubescoutsupport.voltage064@passinbox.com">Contact</a>
+        </div>
+        <button class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-semibold">Join Waitlist</button>
     </nav>
+
     <main class="max-w-3xl mx-auto py-20 px-6 text-center">
-        <h1 class="text-5xl font-extrabold mb-6">Export Every Video URL From Any YouTube Channel In Seconds</h1>
-        <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-            <div class="flex gap-2">
-                <input id="url" type="text" placeholder="Paste YouTube URL" class="flex-grow p-4 border rounded-xl">
+        <div class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-widest bg-gray-100 rounded-full">⚡ Built for Content Researchers</div>
+        <h1 class="text-6xl font-extrabold mb-8 tracking-tighter leading-tight">Export Every Video URL From Any YouTube Channel In Seconds</h1>
+        <p class="text-xl text-gray-600 mb-12">Stop scrolling through competitor channels. Instantly collect Videos, Shorts, Live Streams, and Podcasts.</p>
+        
+        <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm text-left">
+            <div class="flex flex-col md:flex-row gap-3">
+                <input id="url" type="text" placeholder="https://youtube.com/@ChannelName" class="flex-grow p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500">
                 <button onclick="run()" id="btn" class="btn-red px-8 py-4 rounded-xl font-bold">Extract URLs</button>
             </div>
-            <textarea id="res" class="w-full mt-6 h-40 p-4 border rounded-xl" readonly placeholder="Results appear here..."></textarea>
+            <textarea id="res" class="w-full mt-6 h-64 p-4 border border-gray-200 rounded-xl font-mono text-sm" readonly placeholder="Extracted URLs will appear here..."></textarea>
         </div>
     </main>
     <script>
@@ -37,7 +48,7 @@
                 });
                 const d = await r.json();
                 res.value = d.urls.join('\n');
-            } catch (e) { res.value = "Error: Backend unreachable. Check Render logs."; }
+            } catch (e) { res.value = "Error: Backend connection failed. Please check Render logs."; }
             btn.innerText = "Extract URLs";
         }
     </script>
