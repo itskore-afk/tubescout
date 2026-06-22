@@ -2,53 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TubeScout - YouTube Channel URL Extractor & Research Tool</title>
+    <title>TubeScout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #FFFFFF; color: #000000; font-family: sans-serif; }
-        .bg-primary { background-color: #FF0033; }
-        .text-primary { color: #FF0033; }
-        .border-primary { border-color: #FF0033; }
-        .btn-red { background-color: #FF0033; color: white; transition: 0.2s; }
-        .btn-red:hover { opacity: 0.9; }
+        body { background-color: #FFFFFF; color: #000000; }
+        .btn-red { background-color: #FF0033; color: white; }
     </style>
 </head>
-<body>
-    <nav class="max-w-6xl mx-auto py-8 px-6 flex justify-between items-center">
-        <div class="font-extrabold text-2xl tracking-tighter">● TubeScout</div>
-        <div class="space-x-8 text-sm font-medium">
-            <a href="#features">Features</a><a href="#faq">FAQ</a><a href="mailto:tubescoutsupport.voltage064@passinbox.com">Contact</a>
-        </div>
-        <button class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-semibold">Join Waitlist</button>
-    </nav>
-
-    <main class="max-w-3xl mx-auto py-20 px-6 text-center">
-        <div class="inline-block px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-widest bg-gray-100 rounded-full">⚡ Built for Content Researchers</div>
-        <h1 class="text-6xl font-extrabold mb-8 tracking-tighter leading-tight">Export Every Video URL From Any YouTube Channel In Seconds</h1>
-        <p class="text-xl text-gray-600 mb-12">Stop scrolling through competitor channels. Instantly collect Videos, Shorts, Live Streams, and Podcasts.</p>
-        
-        <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 shadow-sm text-left">
-            <div class="flex flex-col md:flex-row gap-3">
-                <input id="url" type="text" placeholder="https://youtube.com/@ChannelName" class="flex-grow p-4 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-red-500">
-                <button onclick="run()" id="btn" class="btn-red px-8 py-4 rounded-xl font-bold">Extract URLs</button>
-            </div>
-            <textarea id="res" class="w-full mt-6 h-64 p-4 border border-gray-200 rounded-xl font-mono text-sm" readonly placeholder="Extracted URLs will appear here..."></textarea>
-        </div>
+<body class="p-6">
+    <main class="max-w-2xl mx-auto border border-gray-200 rounded-3xl p-8 shadow-sm">
+        <input id="url" type="text" placeholder="Paste YouTube Channel URL" class="w-full p-4 border rounded-xl mb-4">
+        <button id="btn" onclick="run()" class="w-full btn-red p-4 rounded-xl font-bold">Extract URLs</button>
+        <textarea id="res" class="w-full mt-6 h-64 p-4 border rounded-xl" placeholder="Results..." readonly></textarea>
     </main>
     <script>
         async function run() {
             const btn = document.getElementById('btn');
             const res = document.getElementById('res');
+            const url = document.getElementById('url').value;
             btn.innerText = "Extracting...";
             try {
-                const r = await fetch('https://tubescout-backend.onrender.com/extract', {
+                const response = await fetch('https://tubescout-backend.onrender.com/extract', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ url: document.getElementById('url').value })
+                    body: JSON.stringify({ url: url })
                 });
-                const d = await r.json();
-                res.value = d.urls.join('\n');
-            } catch (e) { res.value = "Error: Backend connection failed. Please check Render logs."; }
+                const data = await response.json();
+                if(data.urls) res.value = data.urls.join('\n');
+                else res.value = "Error: " + data.error;
+            } catch (e) { res.value = "Connection failed."; }
             btn.innerText = "Extract URLs";
         }
     </script>
