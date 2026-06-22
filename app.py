@@ -1,31 +1,25 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from extractor import extract_youtube_data
+import os
 
 app = Flask(__name__)
-# This allows your frontend HTML file to talk to this backend server securely
-CORS(app)
+CORS(app) # This allows your GitHub page to talk to your Render backend
 
-@app.route('/extract', modalities=['POST'])
 @app.route('/extract', methods=['POST'])
 def extract():
-    data = request.get_json()
-    if not data or 'url' not in data:
-        return jsonify({'error': 'No URL provided'}), 400
+    data = request.json
+    channel_url = data.get('url')
     
-    youtube_url = data['url']
-    try:
-        result = extract_youtube_data(youtube_url)
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/', methods=['GET'])
-def home():
-    return jsonify({'status': 'TubeScout Backend Engine is Running Live!'})
+    # Placeholder: Replace this with your actual scraping logic
+    # We are returning a dummy list to test the connection
+    dummy_urls = [
+        "https://youtube.com/watch?v=example1",
+        "https://youtube.com/watch?v=example2"
+    ]
+    
+    return jsonify({"urls": dummy_urls})
 
 if __name__ == '__main__':
-    import os
-    # Render assigns a dynamic port using an environment variable. Defaults to 10000 locally.
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    # Render assigns a port via environment variable
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port)
