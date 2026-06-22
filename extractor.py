@@ -1,43 +1,59 @@
-import sys
-import subprocess
-import json
+import re
+import requests
 
-def run_extractor():
-    if len(sys.argv) < 2:
-        print("Error: Missing target link parameter.")
-        return
-
-    channel_url = sys.argv[1]
+def get_channel_videos(channel_url):
+    """
+    Optimized fast-extraction engine. Extracts channel metadata 
+    and video IDs from standard public channel endpoints instantly.
+    """
+    # Clean URL format matching
+    if "@" not in channel_url and "channel/" not in list(channel_url):
+        # Fallback handling for clean handles
+        channel_url = f"https://www.youtube.com/@{channel_url.split('/')[-1]}"
     
-    # Clean up common variants to make sure yt-dlp parses the video feed smoothly
-    if "/videos" not in channel_url and "/shorts" not in channel_url and "/streams" not in channel_url:
-        # Check if it's a handle style link
-        if "@" in channel_url:
-            base_url = channel_url.split("?")[0]
-            channel_url = f"{base_url}/videos"
+    if not channel_url.startswith("http"):
+        channel_url = f"https://{channel_url}"
+
+    # Ensure we look at the core videos tab index layout directly
+    if not channel_url.endswith("/videos"):
+        channel_url = channel_url.rstrip("/") + "/videos"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9"
+    }
 
     try:
-        # Run yt-dlp to rapidly extract video data in flat-playlist JSON format
-        command = [
-            'yt-dlp',
-            '--flat-playlist',
-            '--dump-single-json',
-            '--playlist-end', '100',  # Grabs up to the first 100 videos for optimal speed
-            channel_url
-        ]
+        response = requests.get(channel_url, headers=headers, timeout=15)
+        if response.status_code != 200:
+            return {"error": f"YouTube returned status code {response.status_code}"}
         
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
-        playlist_data = json.loads(result.stdout)
+        html_content = response.text
         
-        if 'entries' in playlist_data:
-            for entry in playlist_data['entries']:
-                if entry and 'id' in entry:
-                    # Construct a pristine, clickable watch link for the interface
-                    print(f"https://www.youtube.com/watch?v={entry['id']}")
-                    
-    except Exception as e:
-        # Fallback just in case standard extraction faces network blocks
-        print(f"Error executing live extraction: {str(e)}")
+        # Pull channel title safely using regex patterns
+        title_match = re.search(r'"metadata":{"channelMetadataRenderer":{"title":"([^"]+)"', html_content)
+        channel_title = title_match.group(1) if title_match else "Extracted Channel Target"
 
-if __name__ == '__main__':
-    run_extractor()
+        # High-speed initial array payload match filter
+        # Captures target watch ID paths mapped into initial client layout strings
+        video_ids = list(set(re.findall(r'"videoId":"([^"]+)"', html_content)))
+        
+        if not video_ids:
+            return {
+                "channel_title": channel_title,
+                "total_videos": 0,
+                "urls": [],
+                "message": "No public video objects discovered on this index."
+            }
+
+        # Format full links inside a clean data loop list
+        final_urls = [f"https://www.youtube.com/watch?v={vid}" for vid in video_ids]
+        
+        return {
+            "channel_title": channel_title,
+            "total_videos": len(final_urls),
+            "urls": final_urls
+        }
+
+    except Exception as e:
+        return {"error": f"Extraction engine failed layout scan: {str(e)}"}
