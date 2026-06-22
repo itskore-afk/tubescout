@@ -10,24 +10,24 @@ CORS(app)
 def extract():
     data = request.json
     channel_url = data.get('url')
-    
     if not channel_url:
-        return jsonify({"error": "No URL provided"}), 400
+        return jsonify({"error": "No URL"}), 400
 
     try:
-        ydl_opts = {'quiet': True, 'extract_flat': True}
+        # Configuration to ensure we get ALL videos, not just the top ones
+        ydl_opts = {
+            'quiet': True,
+            'extract_flat': 'in_playlist',  # Fetches entire channel content
+            'force_generic_extractor': True,
+        }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             result = ydl.extract_info(channel_url, download=False)
+            entries = result.get('entries', [])
             
-            # This safely handles the data structure to prevent the KeyError
-            urls = []
-            for entry in result.get('entries', []):
-                link = entry.get('url') or entry.get('webpage_url')
-                if link:
-                    urls.append(link)
-                    
-            return jsonify({"urls": urls})
+            # Extract full URLs, excluding Shorts if you prefer
+            urls = [e['url'] for e in entries if e and 'url' in e]
             
+        return jsonify({"urls": urls, "count": len(urls)})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
