@@ -20,25 +20,44 @@ def extract():
         return jsonify({"error": "No URL provided"}), 400
     
     try:
-        # Using yt-dlp to get video information
-        ydl_opts = {'quiet': True}
+        # These options mimic a real browser to bypass YouTube's bot detection
+        ydl_opts = {
+            'quiet': True,
+            'no_warnings': True,
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        }
+        
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            # Extract info
             info = ydl.extract_info(url, download=False)
             
-        # Extracting specific data points
-        result = {
-            "title": info.get('title'),
-            "thumbnail": info.get('thumbnail'),
-            "duration": info.get('duration'),
-            "uploader": info.get('uploader')
-        }
+            # Handle different types of URLs (video vs channel/playlist)
+            if 'entries' in info:
+                # It's a channel or playlist
+                videos = []
+                for entry in info['entries']:
+                    if entry:
+                        videos.append({
+                            "title": entry.get('title'),
+                            "url": entry.get('webpage_url')
+                        })
+                result = {"type": "playlist", "videos": videos}
+            else:
+                # It's a single video
+                result = {
+                    "type": "video",
+                    "title": info.get('title'),
+                    "thumbnail": info.get('thumbnail'),
+                    "url": url
+                }
         
         print("DEBUG: Extraction successful")
         return jsonify(result)
     
     except Exception as e:
-        print(f"DEBUG: Error occurred: {str(e)}")
-        return jsonify({"status": "error", "message": str(e)}), 500
+        error_msg = str(e)
+        print(f"DEBUG: Error occurred: {error_msg}")
+        return jsonify({"status": "error", "message": error_msg}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
