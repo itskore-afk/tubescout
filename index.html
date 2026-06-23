@@ -1,632 +1,689 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta charset="UTF-8">
-
-<title>TubeScout - YouTube Channel URL Extractor & Research Tool</title>
-
-<meta name="description" content="Export YouTube channel videos, Shorts, Live Streams and Podcast URLs instantly. Built for competitor research, content audits, SEO analysis and AI workflows.">
-
-<meta name="keywords" content="youtube channel url extractor, youtube video url exporter, youtube competitor analysis tool, youtube content research tool, youtube channel scraper, youtube shorts extractor, youtube dataset builder">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta property="og:title" content="TubeScout">
-<meta property="og:description" content="Export Every Video URL From Any YouTube Channel In Seconds.">
-
-<style>
-
-*{
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
-body{
-margin:0;
-font-family:Inter,Arial,sans-serif;
-background:#fff;
-color:#000;
-}
-
-header{
-position:sticky;
-top:0;
-background:#fff;
-border-bottom:1px solid #eee;
-z-index:100;
-}
-
-.nav{
-max-width:1100px;
-margin:auto;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.logo{
-font-size:24px;
-font-weight:900;
-}
-
-nav a{
-margin:0 12px;
-text-decoration:none;
-color:#000;
-font-weight:600;
-}
-
-.btn{
-border:none;
-background:#FF0033;
-color:#fff;
-padding:14px 24px;
-border-radius:999px;
-font-weight:800;
-cursor:pointer;
-}
-
-.btn2{
-background:#fff;
-color:#000;
-border:2px solid #000;
-}
-
-section{
-max-width:1100px;
-margin:auto;
-padding:90px 20px;
-}
-
-.hero{
-text-align:center;
-}
-
-.badge{
-display:inline-block;
-background:#f5f5f5;
-padding:10px 18px;
-border-radius:999px;
-font-weight:700;
-}
-
-h1{
-font-size:64px;
-line-height:1;
-max-width:850px;
-margin:30px auto;
-}
-
-.hero p{
-font-size:20px;
-max-width:700px;
-margin:auto;
-color:#444;
-}
-
-.buttons{
-margin-top:35px;
-}
-
-.card{
-border:1px solid #ddd;
-border-radius:28px;
-padding:30px;
-background:#fff;
-box-shadow:0 20px 40px rgba(0,0,0,.06);
-}
-
-.preview{
-margin-top:70px;
-}
-
-input,textarea{
-width:100%;
-padding:16px;
-border:1px solid #ddd;
-border-radius:15px;
-margin:10px 0;
-font-size:16px;
-}
-
-textarea{
-height:250px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:20px;
-}
-
-.box{
-border:1px solid #eee;
-padding:25px;
-border-radius:24px;
-}
-
-h2{
-font-size:42px;
-}
-
-.faq div{
-border-bottom:1px solid #ddd;
-padding:20px 0;
-cursor:pointer;
-}
-
-.answer{
-display:none;
-color:#555;
-margin-top:10px;
-}
-
-.cta{
-text-align:center;
-}
-
-footer{
-border-top:1px solid #eee;
-padding:40px;
-text-align:center;
-}
-
-footer a{
-color:#000;
-margin:10px;
-}
-
-@media(max-width:700px){
-
-h1{
-font-size:42px;
-}
-
-nav{
-display:none;
-}
-
-}
-
-</style>
-
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Description" content="Export YouTube channel videos, Shorts, Live Streams and Podcast URLs instantly. Built for competitor research, content audits, SEO analysis and AI workflows.">
+  <meta name="Keywords" content="youtube channel url extractor, youtube video url exporter, youtube competitor analysis tool, youtube content research tool, youtube channel scraper, youtube shorts extractor, youtube dataset builder">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 24.0px Arial; -webkit-text-stroke: #000000; background-color: #ffffff}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 24.0px Arial; -webkit-text-stroke: #000000; background-color: #ffffff; min-height: 28.0px}
+    span.s1 {font-kerning: none}
+  </style>
 </head>
-
-
 <body>
-
-
-<header>
-
-<div class="nav">
-
-<div class="logo">● TubeScout</div>
-
-<nav>
-
-<a href="#features">Features</a>
-<a href="#usecases">Use Cases</a>
-<a href="#faq">FAQ</a>
-<a href="contact.html">Contact</a>
-
-</nav>
-
-<button class="btn">
-Join Waitlist
-</button>
-
-</div>
-
-</header>
-
-
-
-<section class="hero">
-
-
-<div class="badge">
-⚡ Built for Content Researchers & AI Workflows
-</div>
-
-
-<h1>
-Export Every Video URL From Any YouTube Channel In Seconds
-</h1>
-
-
-<p>
-Stop scrolling through competitor channels.
-Collect Videos, Shorts, Live Streams and Podcasts for research,
-content audits and AI workflows.
-</p>
-
-
-<div class="buttons">
-
-<a href="#tool">
-<button class="btn">
-Try Free
-</button>
-</a>
-
-
-<button class="btn btn2">
-Join Waitlist
-</button>
-
-
-</div>
-
-
-<p style="margin-top:25px">
-No Signup Required · Free To Use · Works In Seconds
-</p>
-
-
-</section>
-
-
-
-<section id="tool">
-
-
-<div class="card">
-
-
-<h2>
-Live Product Preview
-</h2>
-
-
-<input id="url"
-placeholder="https://youtube.com/@ChannelName">
-
-
-
-<button class="btn" onclick="run()">
-Extract URLs
-</button>
-
-
-<h3 id="stats"></h3>
-
-
-<textarea id="result"
-readonly
-placeholder="Your exported URLs appear here">
-</textarea>
-
-
-<button class="btn btn2" onclick="copyURLs()">
-Copy All URLs
-</button>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section>
-
-<h2>
-Trusted By Researchers, Marketers & Creators
-</h2>
-
-
-<div class="grid">
-
-<div class="box">
-10,000+<br>
-URLs Exported
-</div>
-
-
-<div class="box">
-500+<br>
-Channels Analyzed
-</div>
-
-
-<div class="box">
-100%<br>
-Free Core Tool
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<section>
-
-<h2>
-Stop Wasting Hours On Manual YouTube Research
-</h2>
-
-
-<div class="grid">
-
-
-<div class="box">
-<h3>Manual Scrolling</h3>
-Finding old uploads takes forever.
-</div>
-
-
-<div class="box">
-<h3>Competitor Analysis</h3>
-Study any creator instantly.
-</div>
-
-
-<div class="box">
-<h3>AI Dataset Building</h3>
-Prepare clean research datasets.
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<section id="features">
-
-<h2>
-Everything You Need
-</h2>
-
-
-<div class="grid">
-
-
-<div class="box">
-Instant URL Extraction
-</div>
-
-
-<div class="box">
-Videos Shorts & Lives
-</div>
-
-
-<div class="box">
-One Click Copy
-</div>
-
-
-<div class="box">
-Fast Channel Scanning
-</div>
-
-
-<div class="box">
-No Signup Required
-</div>
-
-
-<div class="box">
-CSV Export Coming Soon
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<section id="usecases">
-
-
-<h2>
-Built For
-</h2>
-
-
-<div class="grid">
-
-<div class="box">SEO Researchers</div>
-<div class="box">Content Strategists</div>
-<div class="box">Marketing Agencies</div>
-<div class="box">YouTube Coaches</div>
-<div class="box">AI Researchers</div>
-<div class="box">Students</div>
-
-</div>
-
-
-</section>
-
-
-
-
-<section id="faq">
-
-
-<h2>
-FAQ
-</h2>
-
-
-<div class="faq">
-
-
-<div onclick="toggle(this)">
-Is TubeScout free?
-<p class="answer">
-Yes. TubeScout core extraction tool is completely free.
-</p>
-</div>
-
-
-<div onclick="toggle(this)">
-Do I need an account?
-<p class="answer">
-No. Paste a channel and start.
-</p>
-</div>
-
-
-<div onclick="toggle(this)">
-Will there be Pro?
-<p class="answer">
-Yes. Future versions include advanced exports and filters.
-</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section class="cta">
-
-
-<h2>
-Research YouTube Faster
-</h2>
-
-
-<p>
-Export every channel URL in seconds.
-</p>
-
-
-<a href="#tool">
-<button class="btn">
-Try TubeScout Free
-</button>
-</a>
-
-
-</section>
-
-
-
-<footer>
-
-<b>TubeScout</b>
-
-<p>
-Export Every Video URL From Any YouTube Channel In Seconds.
-</p>
-
-
-<a href="privacy.html">
-Privacy Policy
-</a>
-
-
-<a href="contact.html">
-Contact
-</a>
-
-
-<p>
-© 2026 TubeScout. All Rights Reserved.
-</p>
-
-
-</footer>
-
-
-
-
-
-<script>
-
-
-async function run(){
-
-let url=document.getElementById("url").value;
-
-let result=document.getElementById("result");
-
-let stats=document.getElementById("stats");
-
-
-stats.innerText="Extracting...";
-
-
-try{
-
-
-let r=await fetch(
-"https://tubescout-backend.onrender.com/extract",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-url:url
-})
-});
-
-
-let data=await r.json();
-
-
-stats.innerText=
-"✓ "+data.count+" Videos Found";
-
-
-result.value=
-data.urls.join("\n");
-
-
-}catch(e){
-
-result.value="Backend error";
-
-}
-
-
-}
-
-
-
-function copyURLs(){
-
-navigator.clipboard.writeText(
-document.getElementById("result").value
-);
-
-}
-
-
-
-function toggle(el){
-
-let a=el.querySelector(".answer");
-
-a.style.display=
-a.style.display=="block"
-?"none"
-:block;
-
-}
-
-
-</script>
-
-
-
+<p class="p1"><span class="s1"><b>&lt;!DOCTYPE html&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;html lang="en"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;head&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;meta charset="UTF-8"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;title&gt;TubeScout - YouTube Channel URL Extractor &amp; Research Tool&lt;/title&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;meta name="description" content="Export YouTube channel videos, Shorts, Live Streams and Podcast URLs instantly. Built for competitor research, content audits, SEO analysis and AI workflows."&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;style&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>*{</b></span></p>
+<p class="p1"><span class="s1"><b>box-sizing:border-box;</b></span></p>
+<p class="p1"><span class="s1"><b>scroll-behavior:smooth;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>body{</b></span></p>
+<p class="p1"><span class="s1"><b>margin:0;</b></span></p>
+<p class="p1"><span class="s1"><b>font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;</b></span></p>
+<p class="p1"><span class="s1"><b>background:#ffffff;</b></span></p>
+<p class="p1"><span class="s1"><b>color:#000000;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>header{</b></span></p>
+<p class="p1"><span class="s1"><b>position:sticky;</b></span></p>
+<p class="p1"><span class="s1"><b>top:0;</b></span></p>
+<p class="p1"><span class="s1"><b>z-index:100;</b></span></p>
+<p class="p1"><span class="s1"><b>background:white;</b></span></p>
+<p class="p1"><span class="s1"><b>border-bottom:1px solid #eee;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:20px 7%;</b></span></p>
+<p class="p1"><span class="s1"><b>display:flex;</b></span></p>
+<p class="p1"><span class="s1"><b>justify-content:space-between;</b></span></p>
+<p class="p1"><span class="s1"><b>align-items:center;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.logo{</b></span></p>
+<p class="p1"><span class="s1"><b>font-size:28px;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:900;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>nav a{</b></span></p>
+<p class="p1"><span class="s1"><b>color:black;</b></span></p>
+<p class="p1"><span class="s1"><b>text-decoration:none;</b></span></p>
+<p class="p1"><span class="s1"><b>margin:0 15px;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:600;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.btn{</b></span></p>
+<p class="p1"><span class="s1"><b>background:#FF0033;</b></span></p>
+<p class="p1"><span class="s1"><b>color:white;</b></span></p>
+<p class="p1"><span class="s1"><b>border:none;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:14px 25px;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:999px;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:700;</b></span></p>
+<p class="p1"><span class="s1"><b>cursor:pointer;</b></span></p>
+<p class="p1"><span class="s1"><b>text-decoration:none;</b></span></p>
+<p class="p1"><span class="s1"><b>display:inline-block;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.btn-outline{</b></span></p>
+<p class="p1"><span class="s1"><b>background:white;</b></span></p>
+<p class="p1"><span class="s1"><b>color:black;</b></span></p>
+<p class="p1"><span class="s1"><b>border:1px solid black;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.hero{</b></span></p>
+<p class="p1"><span class="s1"><b>padding:100px 7%;</b></span></p>
+<p class="p1"><span class="s1"><b>text-align:center;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.badge{</b></span></p>
+<p class="p1"><span class="s1"><b>display:inline-block;</b></span></p>
+<p class="p1"><span class="s1"><b>background:#f4f4f4;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:10px 20px;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:30px;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:700;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>h1{</b></span></p>
+<p class="p1"><span class="s1"><b>font-size:64px;</b></span></p>
+<p class="p1"><span class="s1"><b>max-width:950px;</b></span></p>
+<p class="p1"><span class="s1"><b>margin:30px auto;</b></span></p>
+<p class="p1"><span class="s1"><b>line-height:1.05;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.hero p{</b></span></p>
+<p class="p1"><span class="s1"><b>font-size:21px;</b></span></p>
+<p class="p1"><span class="s1"><b>max-width:750px;</b></span></p>
+<p class="p1"><span class="s1"><b>margin:auto;</b></span></p>
+<p class="p1"><span class="s1"><b>line-height:1.6;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.card{</b></span></p>
+<p class="p1"><span class="s1"><b>max-width:900px;</b></span></p>
+<p class="p1"><span class="s1"><b>margin:60px auto;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:40px;</b></span></p>
+<p class="p1"><span class="s1"><b>border:1px solid #ddd;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:30px;</b></span></p>
+<p class="p1"><span class="s1"><b>box-shadow:0 20px 50px #00000012;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>input{</b></span></p>
+<p class="p1"><span class="s1"><b>width:100%;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:18px;</b></span></p>
+<p class="p1"><span class="s1"><b>border:1px solid #ddd;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:15px;</b></span></p>
+<p class="p1"><span class="s1"><b>font-size:16px;</b></span></p>
+<p class="p1"><span class="s1"><b>margin-bottom:15px;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.output{</b></span></p>
+<p class="p1"><span class="s1"><b>margin-top:25px;</b></span></p>
+<p class="p1"><span class="s1"><b>background:#111;</b></span></p>
+<p class="p1"><span class="s1"><b>color:white;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:25px;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:20px;</b></span></p>
+<p class="p1"><span class="s1"><b>text-align:left;</b></span></p>
+<p class="p1"><span class="s1"><b>line-height:2;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>section{</b></span></p>
+<p class="p1"><span class="s1"><b>padding:70px 7%;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.grid{</b></span></p>
+<p class="p1"><span class="s1"><b>display:grid;</b></span></p>
+<p class="p1"><span class="s1"><b>grid-template-columns:repeat(auto-fit,minmax(230px,1fr));</b></span></p>
+<p class="p1"><span class="s1"><b>gap:25px;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.box{</b></span></p>
+<p class="p1"><span class="s1"><b>border:1px solid #ddd;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:30px;</b></span></p>
+<p class="p1"><span class="s1"><b>border-radius:25px;</b></span></p>
+<p class="p1"><span class="s1"><b>background:white;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.red{</b></span></p>
+<p class="p1"><span class="s1"><b>color:#FF0033;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.faq{</b></span></p>
+<p class="p1"><span class="s1"><b>border-bottom:1px solid #ddd;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:20px;</b></span></p>
+<p class="p1"><span class="s1"><b>cursor:pointer;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:700;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>.answer{</b></span></p>
+<p class="p1"><span class="s1"><b>display:none;</b></span></p>
+<p class="p1"><span class="s1"><b>font-weight:400;</b></span></p>
+<p class="p1"><span class="s1"><b>margin-top:15px;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>footer{</b></span></p>
+<p class="p1"><span class="s1"><b>border-top:1px solid #ddd;</b></span></p>
+<p class="p1"><span class="s1"><b>padding:50px 7%;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>footer a{</b></span></p>
+<p class="p1"><span class="s1"><b>color:black;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>@media(max-width:700px){</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>h1{</b></span></p>
+<p class="p1"><span class="s1"><b>font-size:38px;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>nav{</b></span></p>
+<p class="p1"><span class="s1"><b>display:none;</b></span></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/style&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/head&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;body&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;header&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="logo"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;span class="red"&gt;●&lt;/span&gt; TubeScout</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;nav&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="#features"&gt;Features&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="#usecases"&gt;Use Cases&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="#faq"&gt;FAQ&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="contact.html"&gt;Contact&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/nav&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a class="btn" href="#waitlist"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Join Waitlist</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/header&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section class="hero"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="badge"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>⚡ Built for Content Researchers &amp; AI Workflows</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h1&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Export Every Video URL From Any YouTube Channel In Seconds</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h1&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;p&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Stop scrolling through competitor channels.</b></span></p>
+<p class="p1"><span class="s1"><b>Instantly collect Videos, Shorts, Live Streams and Podcasts for research, SEO and AI workflows.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/p&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a class="btn" href="#tool"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Try Free</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a class="btn btn-outline" href="#waitlist"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Join Waitlist</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;p&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>No Signup Required • Free To Use • Works In Seconds</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/p&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section id="tool"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="card"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Live Product Preview</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;input placeholder="youtube.com/@MrBeast"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;button class="btn"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Extract URLs</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/button&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="output"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>✓ 847 Videos Found</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>✓ 142 Shorts Found</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>✓ 18 Live Streams Found</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>https://youtube.com/watch?v=...</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>https://youtube.com/watch?v=...</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Trusted By Researchers, Marketers &amp; Creators</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="grid"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;10,000+&lt;/h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>URLs Exported</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;500+&lt;/h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Channels Analyzed</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;100%&lt;/h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Free Core Tool</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Stop Wasting Hours On Manual Research</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="grid"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h3&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Manual Scrolling</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h3&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Finding old uploads takes forever.</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h3&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Competitor Analysis</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h3&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Study any creator strategy instantly.</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h3&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>AI Dataset Building</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h3&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Prepare datasets for AI workflows.</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section id="features"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Everything You Need</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="grid"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Instant URL Extraction</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Videos Shorts Lives</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>One Click Copy</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Fast Channel Scanning</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>No Signup Required</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>CSV Export Coming Soon</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section id="usecases"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Built For</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="grid"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>SEO Researchers</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Content Strategists</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Marketing Agencies</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>AI Researchers</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="box"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Students</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section id="waitlist"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="card"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Get Early Access To TubeScout Pro</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;p&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Future advanced exports, filters and CSV downloads.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/p&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;input placeholder="Enter email"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;button class="btn"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Notify Me</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/button&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;section id="faq"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>FAQ</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="faq" onclick="toggle(this)"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Is TubeScout free?</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="answer"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Yes. TubeScout core tool is completely free.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="faq" onclick="toggle(this)"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Do I need an account?</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="answer"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>No. Paste a channel and start extracting.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="faq" onclick="toggle(this)"&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>Will there be a Pro version?</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;div class="answer"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Yes. Future versions will include advanced research tools.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/div&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/section&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;footer&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;h2&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;span class="red"&gt;●&lt;/span&gt; TubeScout</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/h2&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;p&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Export Every Video URL From Any YouTube Channel In Seconds.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/p&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="privacy.html"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Privacy Policy</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;br&gt;&lt;br&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;a href="contact.html"&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>Contact</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/a&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;p&gt;</b></span></p>
+<p class="p1"><span class="s1"><b>© 2026 TubeScout. All Rights Reserved.</b></span></p>
+<p class="p1"><span class="s1"><b>&lt;/p&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/footer&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;script&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>function toggle(el){</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>let answer =</b></span></p>
+<p class="p1"><span class="s1"><b>el.querySelector(".answer");</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>answer.style.display =</b></span></p>
+<p class="p1"><span class="s1"><b>answer.style.display==="block"</b></span></p>
+<p class="p1"><span class="s1"><b>?</b></span></p>
+<p class="p1"><span class="s1"><b>"none"</b></span></p>
+<p class="p1"><span class="s1"><b>:</b></span></p>
+<p class="p1"><span class="s1"><b>"block";</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>}</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/script&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/body&gt;</b></span></p>
+<p class="p2"><span class="s1"><b></b></span><br></p>
+<p class="p1"><span class="s1"><b>&lt;/html&gt;</b></span></p>
 </body>
 </html>
