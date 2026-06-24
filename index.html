@@ -1,77 +1,314 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>TubeScout</title>
 
 <style>
-body{
-    font-family: Arial;
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:50px;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-.box{
-    background:#222;
-    padding:30px;
-    border-radius:15px;
-    max-width:600px;
-    margin:auto;
+body{
+background:#0d0d0d;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ff2d55;
+}
+
+.waitlist-btn{
+background:#ff2d55;
+color:white;
+padding:12px 20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+.hero{
+max-width:900px;
+margin:auto;
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:56px;
+margin-bottom:20px;
+}
+
+.hero p{
+color:#aaa;
+font-size:18px;
+margin-bottom:20px;
+}
+
+.examples{
+color:#888;
+font-size:14px;
+line-height:1.8;
+margin-top:15px;
+}
+
+.card{
+background:#171717;
+padding:30px;
+border-radius:20px;
+max-width:900px;
+margin:auto;
 }
 
 input{
-    width:80%;
-    padding:12px;
-    margin:10px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:16px;
+margin-bottom:15px;
 }
 
-button{
-    padding:12px 25px;
-    cursor:pointer;
+.buttons{
+display:flex;
+gap:10px;
 }
 
-#result{
-    white-space:pre-wrap;
-    margin-top:20px;
+button.extract{
+flex:1;
+padding:15px;
+border:none;
+background:#ff2d55;
+color:white;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
 }
+
+button.clear{
+width:180px;
+padding:15px;
+border:none;
+background:#333;
+color:white;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+#status{
+margin-top:15px;
+font-weight:bold;
+}
+
+textarea{
+width:100%;
+height:350px;
+margin-top:20px;
+background:black;
+color:white;
+padding:15px;
+border:none;
+border-radius:10px;
+}
+
+.waitlist{
+max-width:700px;
+margin:80px auto;
+text-align:center;
+padding:30px;
+background:#171717;
+border-radius:20px;
+}
+
+.waitlist h2{
+margin-bottom:20px;
+}
+
+.waitlist button{
+background:#ff2d55;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:30px;
+cursor:pointer;
+}
+
+footer{
+margin-top:80px;
+padding:40px;
+border-top:1px solid #222;
+text-align:center;
+}
+
+footer a{
+color:#ff2d55;
+text-decoration:none;
+}
+
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<header>
 
-<h1>TubeScout</h1>
+<div class="logo">
+TubeScout
+</div>
 
-<input id="url" placeholder="Paste YouTube playlist URL">
+<button class="waitlist-btn">
+Join Waitlist
+</button>
 
-<br>
+</header>
 
-<button onclick="extract()">Extract Links</button>
+<section class="hero">
 
-<div id="status"></div>
+<h1>
+Export YouTube URLs Instantly
+</h1>
 
-<pre id="result"></pre>
+<p>
+Paste a YouTube Videos, Shorts or Playlists URL and extract every URL instantly.
+</p>
+
+<div class="examples">
+
+Videos:<br>
+https://youtube.com/@betterstack/videos
+
+<br><br>
+
+Shorts:<br>
+https://youtube.com/@betterstack/shorts
+
+<br><br>
+
+Playlists:<br>
+https://youtube.com/@betterstack/playlists
 
 </div>
 
+</section>
+
+<div class="card">
+
+<input
+id="playlistUrl"
+placeholder="Paste Videos, Shorts or Playlists URL">
+
+<div class="buttons">
+
+<button
+class="extract"
+onclick="extractLinks()">
+Extract URLs
+</button>
+
+<button
+class="clear"
+onclick="clearResults()">
+Refresh
+</button>
+
+</div>
+
+<div id="status"></div>
+
+<textarea
+id="result"
+placeholder="Results appear here">
+</textarea>
+
+</div>
+
+<div class="waitlist">
+
+<h2>
+Get Early Access To TubeScout Pro
+</h2>
+
+<input
+type="email"
+placeholder="Enter your email">
+
+<button>
+Join Waitlist
+</button>
+
+</div>
+
+<footer>
+
+<p>
+© 2026 TubeScout. All Rights Reserved.
+</p>
+
+<br>
+
+<p>
+Feedback us for more improvement
+</p>
+
+<br>
+
+<p>
+
+<a href="mailto:tubescoutsupport.voltage064@passinbox.com">
+
+tubescoutsupport.voltage064@passinbox.com
+
+</a>
+
+</p>
+
+</footer>
 
 <script>
 
-async function extract(){
+function clearResults(){
 
-let url=document.getElementById("url").value;
+document.getElementById("playlistUrl").value="";
+document.getElementById("result").value="";
+document.getElementById("status").innerHTML="";
 
-let status=document.getElementById("status");
+}
 
-status.innerHTML="Loading...";
+async function extractLinks(){
 
+const url=
+document.getElementById("playlistUrl").value;
+
+const status=
+document.getElementById("status");
+
+const result=
+document.getElementById("result");
+
+status.innerHTML="Processing...";
+result.value="";
 
 try{
 
-let res=await fetch("/extract",{
+const response=
+await fetch("/extract",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -81,38 +318,35 @@ url:url
 })
 });
 
-
-let data=await res.json();
-
+const data=
+await response.json();
 
 if(data.error){
 
-status.innerHTML=data.error;
+status.innerHTML=
+"Error: "+data.error;
 
 return;
-
 }
 
+status.innerHTML=
+"Found "+data.count+" URLs";
 
-status.innerHTML="Found "+data.count+" links";
-
-document.getElementById("result").innerHTML =
+result.value=
 data.urls.join("\n");
-
 
 }
 
 catch(e){
 
-status.innerHTML="Backend error";
+status.innerHTML=
+"Backend error";
 
 }
-
 
 }
 
 </script>
-
 
 </body>
 </html>

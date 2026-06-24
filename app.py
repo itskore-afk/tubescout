@@ -20,42 +20,46 @@ def extract():
     if not url:
         return jsonify({"error": "Missing URL"}), 400
 
-
     ydl_opts = {
         "quiet": True,
-        "extract_flat": True,
-        "skip_download": True
+        "extract_flat": True,      # IMPORTANT CHANGE
+        "skip_download": True,
+        "ignoreerrors": True
     }
 
-
     try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(
-                url,
-                download=False
-            )
-
 
         urls = []
 
-        for video in info.get("entries", []):
-            if video:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+
+        entries = info.get("entries", [])
+
+        for video in entries:
+
+            if not video:
+                continue
+
+            vid = video.get("id")
+
+            if vid:
                 urls.append(
-                    "https://youtube.com/watch?v=" + video["id"]
+                    f"https://www.youtube.com/watch?v={vid}"
                 )
 
+        urls = list(dict.fromkeys(urls))
 
         return jsonify({
             "count": len(urls),
             "urls": urls
         })
 
-
     except Exception as e:
+
         return jsonify({
             "error": str(e)
         }), 500
-
 
 
 if __name__ == "__main__":
