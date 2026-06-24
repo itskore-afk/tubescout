@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import yt_dlp
 
@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return "TubeScout Backend Online"
+    return send_file("index.html")
 
 
 @app.route("/extract", methods=["POST"])
@@ -20,30 +20,36 @@ def extract():
     if not url:
         return jsonify({"error": "Missing URL"}), 400
 
+
     ydl_opts = {
         "quiet": True,
         "extract_flat": True,
-        "skip_download": True,
-        "user_agent": "Mozilla/5.0"
+        "skip_download": True
     }
+
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
+            info = ydl.extract_info(
+                url,
+                download=False
+            )
+
 
         urls = []
 
-        if "entries" in info:
-            for video in info["entries"]:
-                if video:
-                    urls.append(
-                        "https://youtube.com/watch?v=" + video["id"]
-                    )
+        for video in info.get("entries", []):
+            if video:
+                urls.append(
+                    "https://youtube.com/watch?v=" + video["id"]
+                )
+
 
         return jsonify({
             "count": len(urls),
             "urls": urls
         })
+
 
     except Exception as e:
         return jsonify({
@@ -51,5 +57,6 @@ def extract():
         }), 500
 
 
+
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
