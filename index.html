@@ -1,432 +1,359 @@
+Here is your complete, updated `index.html` file with the waitlist form changes and the new `joinWaitlist()` function fully integrated.
+
+You can copy this entire block, paste it into your file, and save it on GitHub:
+
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TubeScout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+        body {
+            background: #0d0d0d;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+        }
 
-<title>TubeScout</title>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid #222;
+        }
 
-<style>
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff2d55;
+            letter-spacing: -0.5px;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        button {
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
 
-body{
-background:#0d0d0d;
-color:white;
-font-family:Arial,sans-serif;
-}
+        button:active {
+            transform: scale(0.98);
+        }
 
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-border-bottom:1px solid #222;
-}
+        .waitlist-btn,
+        .extract,
+        .waitlist button {
+            background: #ff2d55;
+            color: white;
+            border: none;
+        }
 
-.logo{
-font-size:32px;
-font-weight:bold;
-color:#ff2d55;
-}
+        .waitlist-btn:hover,
+        .extract:hover,
+        .waitlist button:hover {
+            background: #e02447;
+        }
 
-button{
-cursor:pointer;
-}
+        .waitlist-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
 
-.waitlist-btn,
-.extract,
-.waitlist button{
-background:#ff2d55;
-color:white;
-border:none;
-}
+        .hero {
+            max-width: 800px;
+            margin: auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
 
-.waitlist-btn{
-padding:12px 20px;
-border-radius:30px;
-}
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
 
-.hero{
-max-width:900px;
-margin:auto;
-padding:70px 20px;
-text-align:center;
-}
+        .hero p {
+            color: #aaa;
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
 
-.hero h1{
-font-size:56px;
-margin-bottom:20px;
-}
+        .examples {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #141414;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: left;
+        }
 
-.hero p{
-color:#aaa;
-margin-bottom:20px;
-}
+        .card {
+            background: #171717;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            border: 1px solid #222;
+        }
 
-.examples{
-color:#888;
-line-height:1.8;
-}
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            font-size: 16px;
+            background: #0d0d0d;
+            color: white;
+            outline: none;
+            transition: border-color 0.2s;
+        }
 
-.card{
-background:#171717;
-padding:30px;
-border-radius:20px;
-max-width:900px;
-margin:auto;
-}
+        input:focus,
+        textarea:focus {
+            border-color: #ff2d55;
+        }
 
+        input {
+            margin-bottom: 15px;
+        }
 
-input,
-textarea{
+        .buttons {
+            display: flex;
+            gap: 12px;
+        }
 
-width:100%;
-padding:15px;
-border-radius:10px;
-border:none;
-font-size:16px;
-}
+        .extract {
+            flex: 2;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
 
-input{
-margin-bottom:15px;
-}
+        .clear {
+            flex: 1;
+            background: #2a2a2a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
 
-.buttons{
+        .clear:hover {
+            background: #3a3a3a;
+        }
 
-display:flex;
-gap:10px;
+        #status {
+            margin-top: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #aaa;
+        }
 
-}
+        textarea {
+            height: 250px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
 
-.extract{
+        .waitlist {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #171717;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #222;
+        }
 
-flex:1;
-padding:15px;
-font-size:18px;
-border-radius:10px;
+        .waitlist h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
 
-}
+        .waitlist p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
 
-.clear{
+        .waitlist input {
+            margin-bottom: 15px;
+        }
 
-width:180px;
-background:#333;
-color:white;
-border:none;
-border-radius:10px;
+        .waitlist button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+        }
 
-}
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 14px;
+            color: #666;
+        }
 
-#status{
+        footer a {
+            color: #ff2d55;
+            text-decoration: none;
+        }
 
-margin-top:15px;
-font-weight:bold;
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-}
-
-textarea{
-
-height:350px;
-margin-top:20px;
-background:black;
-color:white;
-
-}
-
-
-.waitlist{
-
-max-width:700px;
-margin:80px auto;
-background:#171717;
-padding:30px;
-border-radius:20px;
-text-align:center;
-
-}
-
-.waitlist button{
-
-padding:15px 30px;
-border-radius:30px;
-
-}
-
-
-footer{
-
-margin-top:80px;
-padding:40px;
-text-align:center;
-border-top:1px solid #222;
-
-}
-
-footer a{
-
-color:#ff2d55;
-
-}
-
-</style>
-
+        @media (max-width: 600px) {
+            header { padding: 20px; }
+            .hero h1 { font-size: 36px; }
+            .buttons { flex-direction: column; }
+            .clear { width: 100%; padding: 15px; }
+        }
+    </style>
 </head>
-
-
 <body>
 
-
 <header>
-
-<div class="logo">
-TubeScout
-</div>
-
-<button class="waitlist-btn">
-Join Waitlist
-</button>
-
+    <div class="logo">TubeScout</div>
+    <button class="waitlist-btn" onclick="document.getElementById('waitlist-section').scrollIntoView({behavior: 'smooth'})">Join Waitlist</button>
 </header>
 
-
-
 <section class="hero">
-
-
-<h1>
-Export YouTube URLs Instantly
-</h1>
-
-
-<p>
-Paste Videos, Shorts or Playlists URL
-</p>
-
-
-<div class="examples">
-
-Videos:<br>
-https://youtube.com/@betterstack/videos
-
-<br><br>
-
-Shorts:<br>
-https://youtube.com/@betterstack/shorts
-
-<br><br>
-
-Playlists:<br>
-https://youtube.com/@betterstack/playlists
-
-</div>
-
-
+    <h1>Export YouTube URLs Instantly</h1>
+    <p>Paste Videos, Shorts, or Playlists URL</p>
+    <div class="examples">
+        <strong>Videos:</strong> https://youtube.com/@betterstack/videos<br><br>
+        <strong>Shorts:</strong> https://youtube.com/@betterstack/shorts<br><br>
+        <strong>Playlists:</strong> https://youtube.com/@betterstack/playlists
+    </div>
 </section>
 
-
-
 <div class="card">
-
-
-<input
-id="playlistUrl"
-placeholder="Paste YouTube URL">
-
-
-<div class="buttons">
-
-
-<button
-class="extract"
-onclick="extractLinks()">
-
-Extract URLs
-
-</button>
-
-
-<button
-class="clear"
-onclick="clearResults()">
-
-Refresh
-
-</button>
-
-
+    <input id="playlistUrl" type="url" placeholder="Paste YouTube URL">
+    <div class="buttons">
+        <button class="extract" onclick="extractLinks()">Extract URLs</button>
+        <button class="clear" onclick="clearResults()">Refresh</button>
+    </div>
+    <div id="status"></div>
+    <textarea id="result" readonly placeholder="Results appear here..."></textarea>
 </div>
 
-
-<div id="status"></div>
-
-
-<textarea
-id="result"
-placeholder="Results appear here">
-
-</textarea>
-
-
+<div class="waitlist" id="waitlist-section">
+    <h2>Get Early Access To TubeScout Pro</h2>
+    <p>Be the first to know when we launch advanced filtering features.</p>
+    <input id="waitlistEmail" type="email" placeholder="Enter your email">
+    <button onclick="joinWaitlist()">Join Waitlist</button>
+    <div id="waitlistStatus" style="margin-top:20px;font-weight:bold;"></div>
 </div>
-
-
-
-
-<div class="waitlist">
-
-<h2>
-Get Early Access To TubeScout Pro
-</h2>
-
-
-<input
-type="email"
-placeholder="Enter your email">
-
-
-<br><br>
-
-<button>
-Join Waitlist
-</button>
-
-
-</div>
-
-
-
 
 <footer>
-
-<p>
-© 2026 TubeScout. All Rights Reserved.
-</p>
-
-<br>
-
-<a href="mailto:tubescoutsupport.voltage064@passinbox.com">
-
-tubescoutsupport.voltage064@passinbox.com
-
-</a>
-
+    <p>&copy; 2026 TubeScout. All Rights Reserved.</p>
+    <br>
+    <a href="mailto:tubescoutsupport.voltage064@passinbox.com">tubescoutsupport.voltage064@passinbox.com</a>
 </footer>
 
-
-
-
-
 <script>
+    function clearResults() {
+        document.getElementById("playlistUrl").value = "";
+        document.getElementById("result").value = "";
+        document.getElementById("status").innerHTML = "";
+    }
 
+    async function extractLinks() {
+        const urlInput = document.getElementById("playlistUrl").value.trim();
+        const status = document.getElementById("status");
+        const result = document.getElementById("result");
 
-function clearResults(){
+        if (!urlInput) {
+            status.innerHTML = "Please enter a valid URL.";
+            return;
+        }
 
-playlistUrl.value="";
-result.value="";
-status.innerHTML="";
+        status.innerHTML = "Processing...";
+        result.value = "";
 
-}
+        try {
+            const response = await fetch("https://tubescout-backend.onrender.com/extract", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ url: urlInput })
+            });
 
+            const data = await response.json();
 
+            if (data.error) {
+                status.innerHTML = "Error: " + data.error;
+                return;
+            }
 
-async function extractLinks(){
+            status.innerHTML = "Found " + (data.count || 0) + " URLs";
+            result.value = data.urls ? data.urls.join("\n") : "";
 
+        } catch (error) {
+            console.error(error);
+            status.innerHTML = "Backend error connection failed.";
+        }
+    }
 
-const url =
-document.getElementById("playlistUrl").value;
+    async function joinWaitlist() {
+        const email = document.getElementById("waitlistEmail").value.trim();
+        const status = document.getElementById("waitlistStatus");
 
+        if (!email) {
+            status.innerHTML = "Please enter your email.";
+            return;
+        }
 
-const status =
-document.getElementById("status");
+        status.innerHTML = "Joining waitlist...";
 
+        try {
+            const response = await fetch(
+                "https://tubescout-backend.onrender.com/waitlist",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: email
+                    })
+                }
+            );
 
-const result =
-document.getElementById("result");
+            const data = await response.json();
 
+            if (data.error) {
+                status.innerHTML = data.error;
+                return;
+            }
 
+            status.innerHTML = "✅ You're on the waitlist!";
+            document.getElementById("waitlistEmail").value = "";
 
-status.innerHTML="Processing...";
-result.value="";
-
-
-
-try{
-
-
-const response = await fetch(
-"https://tubescout-backend.onrender.com/extract",
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-url:url
-
-})
-
-}
-
-);
-
-
-
-const data =
-await response.json();
-
-
-
-if(data.error){
-
-status.innerHTML =
-"Error: "+data.error;
-
-return;
-
-}
-
-
-
-status.innerHTML =
-"Found "+data.count+" URLs";
-
-
-result.value =
-data.urls.join("\n");
-
-
-
-}
-
-
-catch(error){
-
-console.log(error);
-
-status.innerHTML =
-"Backend error";
-
-}
-
-
-}
-
-
+        } catch (err) {
+            status.innerHTML = "Server unavailable.";
+        }
+    }
 </script>
-
-
 
 </body>
 </html>
