@@ -1,4 +1,3 @@
-python
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from extractor import extract_urls
@@ -18,9 +17,7 @@ def home():
 
 @app.route("/extract", methods=["POST"])
 def extract():
-
     try:
-
         data = request.get_json()
 
         if not data:
@@ -43,7 +40,6 @@ def extract():
         })
 
     except Exception as e:
-
         return jsonify({
             "error": str(e)
         }), 500
@@ -51,9 +47,7 @@ def extract():
 
 @app.route("/waitlist", methods=["POST"])
 def waitlist():
-
     try:
-
         data = request.get_json()
 
         if not data:
@@ -71,7 +65,6 @@ def waitlist():
         file_exists = os.path.isfile("waitlist.csv")
 
         with open("waitlist.csv", "a", newline="") as csvfile:
-
             writer = csv.writer(csvfile)
 
             if not file_exists:
@@ -84,7 +77,6 @@ def waitlist():
         })
 
     except Exception as e:
-
         return jsonify({
             "error": str(e)
         }), 500
