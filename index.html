@@ -2,30 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TubeScout</title>
 </head>
 <body>
+
     <form id="waitlistForm">
-        <input type="email" name="email" placeholder="Enter your email" required>
+        <input type="email" name="email" id="email" placeholder="Enter your email address" required>
         <button type="submit">Join Waitlist</button>
     </form>
 
     <script>
         const form = document.getElementById('waitlistForm');
+        
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // This is your new, verified deployment URL
             const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8x717Ej3U5gUUnNhq9JQUP5kai6as1K1D8oBuNB0JZ/exec";
+            
+            // Prepare the data to be sent
+            const formData = new FormData(form);
             
             fetch(url, {
                 method: 'POST',
-                mode: 'no-cors',
-                body: new FormData(form)
+                mode: 'no-cors', // Helps prevent browser security blocking
+                body: formData
             })
             .then(() => {
-                alert("Success!");
+                alert("Success! Your email has been added.");
                 form.reset();
             })
-            .catch(err => console.error(err));
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert("There was an error connecting to the server.");
+            });
         });
     </script>
 </body>
