@@ -99,15 +99,14 @@
     </footer>
 
     <script>
-        // Your current deployed Apps Script URL
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhZz-_LN5bnTGnB_b_GpERh5MY8YvHkll_inoUTw6jX1HPmfrl-4BhqgALwOuZ6qtk/exec";
+        // Your newly updated Apps Script URL
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwxza1GvWA8UACcdyc5QxpXiiZG5Nl4_XmtffDYo38_3kK4W7c7ZKXH8Gx-A1JeM5eb/exec";
 
         const waitlistForm = document.getElementById('waitlistForm');
         const emailInput = document.getElementById('waitlistEmail');
         const submitBtn = document.getElementById('submitBtn');
         const statusMessage = document.getElementById('statusMessage');
 
-        // Handle Waitlist Submission
         waitlistForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -118,7 +117,6 @@
             statusMessage.className = "status-msg";
             statusMessage.innerText = "";
 
-            // Format data as reliable form parameters
             const formData = new URLSearchParams();
             formData.append('email', emailValue);
 
