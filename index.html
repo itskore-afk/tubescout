@@ -120,4 +120,20 @@
         formData.append('email', email);
         
         try {
-            const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8
+            const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8x717Ej3U5gUUnNhq9JQUP5kai6as1K1D8oBuNB0JZ/exec";
+            await fetch(url, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            });
+            status.innerHTML = "✅ You're on the waitlist!";
+            document.getElementById("waitlistEmail").value = "";
+        } catch (err) {
+            console.error(err);
+            status.innerHTML = "Connection failed.";
+        }
+    }
+</script>
+
+</body>
+</html>
