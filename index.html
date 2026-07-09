@@ -99,7 +99,7 @@
     </footer>
 
     <script>
-        // 1. Paste your Google Web App URL here
+        // Your current deployed Apps Script URL
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwhZz-_LN5bnTGnB_b_GpERh5MY8YvHkll_inoUTw6jX1HPmfrl-4BhqgALwOuZ6qtk/exec";
 
         const waitlistForm = document.getElementById('waitlistForm');
@@ -109,29 +109,31 @@
 
         // Handle Waitlist Submission
         waitlistForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page refresh
+            e.preventDefault();
             
             const emailValue = emailInput.value.trim();
             
-            // UI Feedback: Disable button while sending
             submitBtn.disabled = true;
             submitBtn.innerText = "Joining...";
             statusMessage.className = "status-msg";
             statusMessage.innerText = "";
 
+            // Format data as reliable form parameters
+            const formData = new URLSearchParams();
+            formData.append('email', emailValue);
+
             fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Direct bypass for CORS errors
+                mode: 'no-cors', 
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: JSON.stringify({ email: emailValue })
+                body: formData.toString()
             })
             .then(() => {
-                // Because of 'no-cors', it triggers here automatically upon data transmission
                 statusMessage.className = "status-msg success";
                 statusMessage.innerText = "Success! You have been added to the waitlist.";
-                emailInput.value = ''; // Clean input
+                emailInput.value = ''; 
             })
             .catch(error => {
                 console.error('Submission Error:', error);
