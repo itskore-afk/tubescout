@@ -1,32 +1,48 @@
-<form id="waitlistForm">
-  <input type="email" name="email" id="email" placeholder="Enter your email address" required>
-  <button type="submit">Join Waitlist</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeScout</title>
+    <style>
+        /* Keep your existing CSS here */
+        body { background-color: #0d0d0d; color: #ffffff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        .container { max-width: 600px; width: 100%; background: #141414; border: 1px solid #262626; border-radius: 12px; padding: 30px; box-sizing: border-box; text-align: center; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none; }
+        button { background-color: #ff2b55; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Get Early Access To TubeScout Pro</h2>
+        <form id="waitlistForm">
+            <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+            <button type="submit">Join Waitlist</button>
+        </form>
+    </div>
 
-<script>
-  const form = document.getElementById('waitlistForm');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Updated with your new Web App URL
-    const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8x717Ej3U5gUUNnhq9JQUP5kai6as1K1D8oBuNB0JZ/exec";
-    
-    fetch(url, {
-      method: 'POST',
-      body: new FormData(form)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.result === 'success') {
-        alert("Success! Your email has been added.");
-        form.reset();
-      } else {
-        alert("Error: " + (data.error || "Unknown error"));
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Submission failed. Check the console for details.");
-    });
-  });
-</script>
+    <script>
+        const form = document.getElementById('waitlistForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Your NEW Web App URL
+            const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8x717Ej3U5gUUNnhq9JQUP5kai6as1K1D8oBuNB0JZ/exec";
+            
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new FormData(form)
+            })
+            .then(() => {
+                alert("Success! You have been added to the waitlist.");
+                form.reset();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Submission failed.");
+            });
+        });
+    </script>
+</body>
+</html>
