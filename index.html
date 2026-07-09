@@ -9,10 +9,10 @@
         body { background: #0d0d0d; color: white; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #222; }
         .logo { font-size: 28px; font-weight: bold; color: #ff2d55; letter-spacing: -0.5px; }
-        button { cursor: pointer; font-weight: 600; transition: background 0.2s ease, transform 0.1s ease; }
-        button:active { transform: scale(0.98); }
-        .waitlist-btn, .extract, .waitlist button { background: #ff2d55; color: white; border: none; }
-        .waitlist-btn:hover, .extract:hover, .waitlist button:hover { background: #e02447; }
+        button, input[type="submit"] { cursor: pointer; font-weight: 600; transition: background 0.2s ease, transform 0.1s ease; }
+        button:active, input[type="submit"]:active { transform: scale(0.98); }
+        .waitlist-btn, .extract, .waitlist-form input[type="submit"] { background: #ff2d55; color: white; border: none; }
+        .waitlist-btn:hover, .extract:hover, .waitlist-form input[type="submit"]:hover { background: #e02447; }
         .waitlist-btn { padding: 10px 20px; border-radius: 30px; font-size: 14px; text-decoration: none; }
         main { max-width: 800px; margin: 60px auto; padding: 0 20px; }
         .hero { text-align: center; margin-bottom: 40px; }
@@ -30,10 +30,9 @@
         .status { font-size: 14px; color: #888; margin-bottom: 15px; }
         .waitlist { text-align: center; max-width: 500px; margin: 0 auto; }
         .waitlist-form { display: flex; gap: 10px; margin-top: 15px; }
-        .waitlist input { flex: 1; background: #141414; border: 1px solid #222; border-radius: 8px; color: white; padding: 12px 15px; font-size: 14px; outline: none; }
-        .waitlist input:focus { border-color: #444; }
-        .waitlist button { padding: 0 25px; border-radius: 8px; font-size: 14px; }
-        #waitlistStatus { margin-top: 10px; font-size: 14px; font-weight: 500; }
+        .waitlist input[type="email"] { flex: 1; background: #141414; border: 1px solid #222; border-radius: 8px; color: white; padding: 12px 15px; font-size: 14px; outline: none; }
+        .waitlist input[type="email"]:focus { border-color: #444; }
+        .waitlist-form input[type="submit"] { padding: 0 25px; border-radius: 8px; font-size: 14px; }
         footer { text-align: center; padding: 40px 0; border-top: 1px solid #111; color: #444; font-size: 14px; margin-top: 100px; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; }
         footer a:hover { color: #ff2d55; }
@@ -66,11 +65,10 @@
         <div class="card waitlist" id="waitlist-section">
             <h2>Get Early Access To TubeScout Pro</h2>
             <p>Be the first to know when we launch advanced filtering features.</p>
-            <div class="waitlist-form">
-                <input type="email" id="waitlistEmail" placeholder="Enter your email address" required>
-                <button onclick="joinWaitlist()">Join Waitlist</button>
-            </div>
-            <div id="waitlistStatus"></div>
+            <form class="waitlist-form" action="https://script.google.com/macros/s/AKfycbyyvavvPy9fcR9Cx1PgrFaUT_tEUm_o03B1C9SP3QCNCiRMK-0UspwRSgHIMHWH-Axe/exec" method="GET">
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <input type="submit" value="Join Waitlist">
+            </form>
         </div>
     </main>
 
@@ -80,9 +78,6 @@
     </footer>
 
     <script>
-        // Your newly generated Web App URL completely embedded cleanly on one line
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyyvavvPy9fcR9Cx1PgrFaUT_tEUm_o03B1C9SP3QCNCiRMK-0UspwRSgHIMHWH-Axe/exec";
-
         async function extractUrls() {
             const urlInput = document.getElementById("urlInput").value.trim();
             const status = document.getElementById("backendStatus");
@@ -103,38 +98,6 @@
                 console.error(error);
                 status.innerHTML = "Backend error connection failed.";
             }
-        }
-
-        function joinWaitlist() {
-            const emailInput = document.getElementById("waitlistEmail");
-            const status = document.getElementById("waitlistStatus");
-            const email = emailInput.value.trim();
-            
-            if (!email) { status.style.color = "#ff2d55"; status.innerHTML = "Please enter your email."; return; }
-            status.style.color = "#888";
-            status.innerHTML = "Joining waitlist...";
-            
-            const searchParams = new URLSearchParams();
-            searchParams.append("email", email);
-            
-            fetch(APPS_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: searchParams.toString()
-            })
-            .then(() => {
-                status.style.color = "#2ecc71";
-                status.innerHTML = "✅ Success! You have been added to the waitlist.";
-                emailInput.value = "";
-            })
-            .catch(err => {
-                console.error("Submission Error:", err);
-                status.style.color = "#ff2d55";
-                status.innerHTML = "Connection failed. Please try again.";
-            });
         }
     </script>
 </body>
