@@ -1,148 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TubeScout</title>
-    <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --card-bg: #141414;
-            --text-color: #ffffff;
-            --accent-color: #ff2b55;
-            --border-color: #262626;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 40px;
-        }
-        h1, h2 { margin-bottom: 10px; }
-        p { color: #888; font-size: 14px; margin-top: 0; margin-bottom: 25px; }
-        input[type="email"], textarea {
-            width: 100%;
-            background: #000;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        button {
-            width: 100%;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        button:hover { opacity: 0.9; }
-        .status-msg {
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 500;
-            min-height: 20px;
-        }
-        .success { color: #2ecc71; }
-        .error { color: #e74c3c; }
-        footer { text-align: center; color: #444; font-size: 12px; margin-top: 20px; }
-        footer a { color: var(--accent-color); text-decoration: none; }
-    </style>
-</head>
-<body>
+<form id="waitlistForm">
+  <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+  <button type="submit">Join Waitlist</button>
+</form>
 
-    <div class="container">
-        <h2>Export YouTube URLs Instantly</h2>
-        <p>Paste Videos, Shorts or Playlists URL</p>
-        <textarea id="channelUrl" rows="4" placeholder="Videos:&#10;https://youtube.com/@betterstack/videos&#10;&#10;Shorts:&#10;https://youtube.com/@betterstack/shorts"></textarea>
-        <button id="extractBtn">Extract URLs</button>
-    </div>
-
-    <div class="container">
-        <h2>Get Early Access To TubeScout Pro</h2>
-        <p>Be the first to know when we launch advanced filtering features.</p>
-        
-        <form id="waitlistForm">
-            <input type="email" id="waitlistEmail" placeholder="Enter your email address" required>
-            <button type="submit" id="submitBtn">Join Waitlist</button>
-        </form>
-        
-        <div id="statusMessage" class="status-msg"></div>
-    </div>
-
-    <footer>
-        <p>© 2026 TubeScout. All Rights Reserved.</p>
-        <p><a href="mailto:tubescoutsupport.voltage064@passinbox.com">tubescoutsupport.voltage064@passinbox.com</a></p>
-    </footer>
-
-    <script>
-        // FIXED: Kept on one single line to prevent layout line-break syntax errors
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfyczbefRqWLDWCpJ-pkdhkQ_FYiZ9FYhBQRBNNvcOJygUAaVcGIfm7of6k0Bxhz4zSwc5P/exec";
-
-        const waitlistForm = document.getElementById('waitlistForm');
-        const emailInput = document.getElementById('waitlistEmail');
-        const submitBtn = document.getElementById('submitBtn');
-        const statusMessage = document.getElementById('statusMessage');
-
-        waitlistForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const emailValue = emailInput.value.trim();
-            
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Joining...";
-            statusMessage.className = "status-msg";
-            statusMessage.innerText = "";
-
-            const formData = new URLSearchParams();
-            formData.append('email', emailValue);
-
-            fetch(APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', 
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formData.toString()
-            })
-            .then(() => {
-                statusMessage.className = "status-msg success";
-                statusMessage.innerText = "Success! You have been added to the waitlist.";
-                emailInput.value = ''; 
-            })
-            .catch(error => {
-                console.error('Submission Error:', error);
-                statusMessage.className = "status-msg error";
-                statusMessage.innerText = "Connection failed. Please try again.";
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Join Waitlist";
-            });
-        });
-    </script>
-</body>
-</html>
+<script>
+  const form = document.getElementById('waitlistForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Updated with your new Web App URL
+    const url = "https://script.google.com/macros/s/AKfycbwy8zMB6kAbv0t_tXZU8RwhBp8x717Ej3U5gUUNnhq9JQUP5kai6as1K1D8oBuNB0JZ/exec";
+    
+    fetch(url, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.result === 'success') {
+        alert("Success! Your email has been added.");
+        form.reset();
+      } else {
+        alert("Error: " + (data.error || "Unknown error"));
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Submission failed. Check the console for details.");
+    });
+  });
+</script>
