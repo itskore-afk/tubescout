@@ -33,19 +33,19 @@
             letter-spacing: -0.5px;
         }
 
-        button, .waitlist-form input[type="submit"] {
+        button {
             cursor: pointer;
             font-weight: 600;
             transition: background 0.2s ease, transform 0.1s ease;
         }
 
-        button:active, .waitlist-form input[type="submit"]:active {
+        button:active {
             transform: scale(0.98);
         }
 
         .waitlist-btn,
         .extract,
-        .waitlist-form input[type="submit"] {
+        .waitlist button {
             background: #ff2d55;
             color: white;
             border: none;
@@ -53,7 +53,7 @@
 
         .waitlist-btn:hover,
         .extract:hover,
-        .waitlist-form input[type="submit"]:hover {
+        .waitlist button:hover {
             background: #e02447;
         }
 
@@ -61,7 +61,6 @@
             padding: 10px 20px;
             border-radius: 30px;
             font-size: 14px;
-            text-decoration: none;
         }
 
         .hero {
@@ -187,18 +186,11 @@
             margin-bottom: 20px;
         }
 
-        /* Fixed structural form styling */
-        .waitlist-form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
         .waitlist input {
             margin-bottom: 15px;
         }
 
-        .waitlist-form input[type="submit"] {
+        .waitlist button {
             width: 100%;
             padding: 15px;
             border-radius: 10px;
@@ -223,7 +215,7 @@
             text-decoration: underline;
         }
 
-        /* Hides background channel target */
+        /* Completely invisible layout-safe target */
         iframe#hidden_iframe {
             display: none !important;
         }
@@ -267,10 +259,11 @@
     <h2>Get Early Access To TubeScout Pro</h2>
     <p>Be the first to know when we launch advanced filtering features.</p>
     
-    <form class="waitlist-form" action="https://script.google.com/macros/s/AKfycbyyvavvPy9fcR9Cx1PgrFaUT_tEUm_o03B1C9SP3QCNCiRMK-0UspwRSgHIMHWH-Axe/exec" method="GET" target="hidden_iframe" onsubmit="showSuccess()">
+    <form id="waitlistForm" action="https://script.google.com/macros/s/AKfycbzQ72gY6BTkqHx-K4yS1yTbI4VuCp7r2-i3WoKcWfEKlhJy492-opf-yoUQWJy3BYhQ/exec" method="GET" target="hidden_iframe" onsubmit="showSuccess()">
         <input id="waitlistEmail" name="email" type="email" placeholder="Enter your email" required>
-        <input type="submit" value="Join Waitlist">
+        <button type="submit">Join Waitlist</button>
     </form>
+    
     <div id="waitlistStatus" style="margin-top:20px;font-weight:bold;"></div>
 </div>
 
