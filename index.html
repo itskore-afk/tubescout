@@ -285,11 +285,10 @@
         status.innerHTML = "Joining waitlist...";
 
         try {
-            const response = await fetch("https://formspree.io/f/mgojgkkz", {
+            const response = await fetch("https://formbold.com/s/3Nd8m", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ email: email })
             });
