@@ -208,6 +208,50 @@
             font-size: 16px;
         }
 
+        /* --- COMING SOON SECTION CSS --- */
+        .roadmap {
+            max-width: 700px;
+            margin: 60px auto;
+            background: #171717;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .roadmap h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .roadmap p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .feature {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 15px;
+            transition: .2s;
+            text-align: left;
+        }
+
+        .feature:hover {
+            border-color: #ff2d55;
+            transform: translateY(-2px);
+        }
+
+        /* --- FOOTER CSS --- */
         footer {
             margin-top: 80px;
             padding: 40px 20px;
@@ -261,12 +305,53 @@
     <textarea id="result" readonly placeholder="Results appear here..."></textarea>
 </div>
 
+<!-- 1. WAITLIST SECTION (UPDATED) -->
 <div class="waitlist" id="waitlist-section">
-    <h2>Get Early Access To TubeScout Pro</h2>
-    <p>Be the first to know when we launch advanced filtering features.</p>
+    <h2>🚀 Become One of the First 100 Early Users</h2>
+    <p>
+        TubeScout is actively being built based on community feedback.
+        Join our first <strong>100 early users</strong> and get early access to every new feature we release during beta.
+    </p>
     <input id="waitlistEmail" type="email" placeholder="Enter your email" name="email">
-    <button onclick="joinWaitlist()">Join Waitlist</button>
+    <button onclick="joinWaitlist()">Join the Waitlist</button>
     <div id="waitlistStatus" style="margin-top:20px;font-weight:bold;"></div>
+</div>
+
+<!-- 2. COMING SOON SECTION (ADDED) -->
+<div class="roadmap">
+    <h2>✨ Coming Soon</h2>
+    <p>
+        Every new feature is prioritized based on feedback from our first 100 users.
+    </p>
+    <div class="roadmap-grid">
+        <div class="feature">
+            🔍 Search YouTube by Keyword
+        </div>
+        <div class="feature">
+            📄 CSV Export
+        </div>
+        <div class="feature">
+            📅 Filter by Upload Year
+        </div>
+        <div class="feature">
+            📊 Channel Statistics
+        </div>
+        <div class="feature">
+            🤖 NotebookLM Dataset Builder
+        </div>
+        <div class="feature">
+            ⚡ Bulk Channel Export
+        </div>
+    </div>
+    <p style="margin-top:30px;">
+        🎯 Goal: <strong>100 Early Users</strong><br>
+        Join today and help shape the future of TubeScout.
+    </p>
+    <button
+        class="waitlist-btn"
+        onclick="document.getElementById('waitlist-section').scrollIntoView({behavior:'smooth'})">
+        Join the Waitlist
+    </button>
 </div>
 
 <footer>
@@ -311,7 +396,8 @@
 
             if (response.ok) {
                 status.style.color = "#2ecc71";
-                status.innerHTML = "✅ You're on the waitlist!";
+                // 4. IMPROVED SUCCESS MESSAGE (UPDATED)
+                status.innerHTML = "🎉 Welcome! You're one of our early users. We'll notify you when Keyword Search, CSV Export and other features are released.";
                 emailInput.value = "";
             } else {
                 status.style.color = "#ff2d55";
